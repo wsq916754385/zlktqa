@@ -9,3 +9,5 @@
 其中数据库基于SQLAlchemy实现
 数据库迁移给予flask-migrate实现
 
+python版本 3.6
+虚拟环境venv/bin/python
