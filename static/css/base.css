@@ -1,0 +1,25 @@
+.logo{
+    height:40px;
+}
+body{
+    background:#f3f3f3
+}
+.navbar-brand {
+    float: left;
+    height: 50px;
+    padding: 5px 5px;
+    font-size: 18px;
+    line-height: 20px;
+}
+.main{
+    background:#fff;
+    width:730px;
+    margin:0 auto;
+    overflow:hidden;
+    padding:10px;
+}
+
+.page-title{
+    text-align: center;
+    color:#19CAAD;
+}
