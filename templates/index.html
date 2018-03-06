@@ -13,14 +13,25 @@
                 <img class='avatar' src="{{ url_for('static',filename='images/logo.png') }}" alt="">
             </div>
             <div class="question-group">
-                <p class="question-title"><a href="{{ url_for('detail',question_id=question.id) }}">{{ question.title }}</a></p>
-                <p class="question-content">{{ question.content }}</p>
+                <p class="question-title" name="question-title"><a href="{{ url_for('detail',question_id=question.id) }}">{{ question.title }}</a></p>
+                <p class="question-content" name="question-content">{{ question.content }}</p>
+
                 <div class="question-info">
+                    {% if ispersonnal %}
+                        <span><a href="{{ url_for('deletequestion',question_id=question.id,methods="POST") }}">删除帖子</a></span>
+                    {% endif %}
                     <span class="question-author">{{ question.author.username }}</span>
-                    <span class="question-time">{{question.create_time}}</span>
+                    <span class="question-time" name="question-create-time">{{question.create_time}}</span>
+
                 </div>
             </div>
         </li>
      {% endfor %}
      </ul>
 {% endblock %}
+
+<form action="" method="POST">
+    <div class="form-group">
+        <button class="btn btn-primary btn-block">立即注册</button>
+    </div>
+</form>

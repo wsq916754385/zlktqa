@@ -33,6 +33,31 @@ def login():
         else:
             return '用户名或密码不正确,请确认后再操作'
 
+@app.route('/personal')
+def personal():
+    user_id=session.get('user_id')
+    context = {
+        'questions': Question.query.filter(Question.author_id==user_id).all(),
+        'ispersonnal':True
+    }
+    return render_template('index.html', **context)
+
+@app.route('/<question_id>',methods=['POST','GET'])
+@login_required
+def deletequestion(question_id):
+    question=Question.query.filter( Question.id==question_id ).first()
+
+    print(question.content)
+
+    answers=Answer.query.filter(Answer.question_id==question.id).all()
+
+    db.session.delete(question)
+    db.session.commit()
+    for answer in answers:
+        db.session.delete(answer)
+    db.session.commit()
+
+    return redirect(url_for('index'))
 
 @app.route('/regist/',methods=['GET','POST'])
 def regist():
@@ -58,6 +83,7 @@ def regist():
                 db.session.add(user)
                 db.session.commit()
                 return redirect(url_for('login'))
+
 @app.route('/logout/')
 def logout():
     session.clear()
